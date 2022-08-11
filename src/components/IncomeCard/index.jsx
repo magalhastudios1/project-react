@@ -1,7 +1,7 @@
 import './incomecard.css';
 import incomeImage from '../../assets/income.svg'
 
-export function IncomeCard(){
+export function IncomeCard(props){
 
     return(
         <>  
@@ -11,7 +11,11 @@ export function IncomeCard(){
                     <img className='income_icon' src={incomeImage} alt="Entradas"/>
                 </header>
                 <strong className='bottom'>
-                    R$ 17.400,00
+                    
+                {new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }).format(props.total)}
                 </strong>
             </div>
         </>
