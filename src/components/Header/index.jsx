@@ -7,21 +7,23 @@ export function Header(props){
     return(
         <>
             <header className='headerPrincipal'>
-                <div className='headerTop'>
-                    <div className='headerTopLeft'>
-                        <div className='headerLogo'>
-                            <img className='total_icon' src={totalImage} alt="Total"/>
+                <div className='contentHeader'>
+                    <div className='headerTop'>
+                        <div className='headerTopLeft'>
+                            <div className='headerLogo'>
+                                <img className='total_icon' src={totalImage} alt="Total"/>
+                            </div>
+                            <strong className='headerTitle'>
+                                Meu Dinheirinho
+                            </strong>
                         </div>
-                        <strong className='title'>
-                            Meu Dinheirinho
-                        </strong>
+                        <div className='headerTopRight'>
+                            <button className='btn'>Nova Transação</button>
+                        </div>
                     </div>
-                    <div className='headerTopRight'>
-                        <button className='btn'>Nova Transação</button>
+                    <div className='headerBottom'>
+                        <Summary transactionList={[]}/>
                     </div>
-                </div>
-                <div className='headerBottom'>
-                    <Summary transactionList={[]}/>
                 </div>
             </header>
         </>

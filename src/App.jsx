@@ -6,7 +6,7 @@ import { Summary } from './components/Summary'
 import { Header } from './components/Header'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   const attributes = {
     name: {size: "6", name: "Titulo"},
@@ -17,8 +17,10 @@ function App() {
 
   return(
     <>
-        <Header transactionList={[]}/>
       
+      <body>
+        <Header transactionList={[]}/>
+      </body>
     </>
     
   );
