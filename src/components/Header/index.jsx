@@ -18,7 +18,7 @@ export function Header(props){
                             </strong>
                         </div>
                         <div className='headerTopRight'>
-                            <button className='btn'>Nova Transação</button>
+                            <button className='btn' data-toggle="modal" data-target="modal">Nova Transação</button>
                         </div>
                     </div>
                     <div className='headerBottom'>

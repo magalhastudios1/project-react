@@ -4,6 +4,7 @@ import { TransactionTable } from './components/transaction-table'
 import './App.css'
 import { Summary } from './components/Summary'
 import { Header } from './components/Header'
+import { Modal } from './components/Modal'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -20,6 +21,7 @@ function App() {
       
       <body>
         <Header transactionList={[]}/>
+        <Modal/>
       </body>
     </>
     
