@@ -15,11 +15,17 @@ class TransactionList{
 
     orderBy(attribute, inverse){
         const sortFunction = (a, b) => {
-            const result = a[attribute] < b[attribute];
-            if(inverse){
+            const order = a.getAttribute(attribute) < b.getAttribute(attribute);
+            let result;
+            if(order){
+                result = 1;
+            }else{
+                result = -1;
+            }
+            if(inverse == false){
                 return result;
             }else{
-                return !result;
+                return result * -1;
             }
         };
 
