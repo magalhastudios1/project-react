@@ -1,7 +1,7 @@
 import './totalcard.css';
 import totalImage from '../../assets/total.svg'
 
-export function TotalCard(){
+export function TotalCard(props){
 
     return(
         <>  
@@ -11,7 +11,10 @@ export function TotalCard(){
                     <img className='total_icon' src={totalImage} alt="Total"/>
                 </header>
                 <strong className='bottom'>
-                    R$ 16.141,00
+                {new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }).format(props.total)}
                 </strong>
             </div>
         </>

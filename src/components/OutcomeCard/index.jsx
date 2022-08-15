@@ -1,7 +1,7 @@
 import './outcomecard.css'
 import outcomeImage from '../../assets/outcome.svg'
 
-export function OutcomeCard(){
+export function OutcomeCard(props){
 
     return(
         <>
@@ -11,7 +11,10 @@ export function OutcomeCard(){
                     <img className='outcome_icon' src={outcomeImage} alt="Saídas"/>
                 </header>
                 <strong className='bottom'>
-                    R$ 1.259,00
+                {new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }).format(props.total)}
                 </strong>
             </div>
         </>
