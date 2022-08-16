@@ -14,7 +14,7 @@ function TransactionTableHeaderColumn({item, attribute, transactionList, transac
         const transactions = transactionList.orderBy(attribute, order);
         
         transactionListSetter(new TransactionList(transactions));
-        orderObjectSetter({attribute, order: !order})
+        orderObjectSetter({attribute, order: !order});
     }
 
     function TransactionTableHeaderColumnOrderIcon({attribute}){

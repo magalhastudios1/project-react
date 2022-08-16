@@ -9,6 +9,11 @@ class TransactionList{
         return this.#transactions;
     }
 
+    getSize(){
+        const transactions = this.getTransactions();
+        return transactions.length;
+    }
+
     addTransaction(transaction){
         this.#transactions.push(transaction);
     }

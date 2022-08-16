@@ -1,4 +1,5 @@
-import {TransactionTableHeaderColumn} from "../transaction-table-header-column"
+import {TransactionTableHeaderColumn} from "../transaction-table-header-column";
+import {TransactionTableHeaderTitle} from "../transaction-table-header-title";
 
 function TransactionTableHeader({attributes, transactionList, transactionListSetter, orderObject, orderObjectSetter}){
     const keys = Object.keys(attributes);
@@ -12,7 +13,12 @@ function TransactionTableHeader({attributes, transactionList, transactionListSet
            orderObject={orderObject} orderObjectSetter={orderObjectSetter}></TransactionTableHeaderColumn>
         );
     }
-    return(<div className="row text-muted fw-bold p-3" key="transaction-table-header">{result}</div>);
+    return (
+        <>
+            <div className="row text-muted fw-bold d-none d-md-flex p-3" key="transaction-table-header">{result}</div>
+            <TransactionTableHeaderTitle transactionList={transactionList}></TransactionTableHeaderTitle>
+        </>
+    );
 }
 
 export {TransactionTableHeader};
