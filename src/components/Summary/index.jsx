@@ -5,6 +5,9 @@ import { OutcomeCard } from '../OutcomeCard';
 import { TotalCard } from '../TotalCard';
 import './summary.css';
 
+import {Swiper, SwiperSlide} from 'swiper/react';
+import 'swiper/css';
+
 
 
 //<IncomeCard total={17400}/>
@@ -16,10 +19,19 @@ export function Summary(props){
     return(
         <>  
             <div className='summary'>
-
-                <IncomeCard total={props.transactionList.getTotalIncome()}/>
-                <OutcomeCard total={props.transactionList.getTotalOutcome()}/>
-                <TotalCard total={props.transactionList.getTotalIncome() - props.transactionList.getTotalOutcome()}/>
+                <Swiper>
+                    <SwiperSlide>
+                        <IncomeCard total={props.transactionListState.getTotalIncome()}/>
+                    </SwiperSlide>
+                    
+                    <SwiperSlide>
+                        <OutcomeCard total={props.transactionListState.getTotalOutcome()}/>
+                    </SwiperSlide>
+                    
+                    <SwiperSlide>
+                        <TotalCard total={props.transactionListState.getTotalIncome() - props.transactionListState.getTotalOutcome()}/>
+                    </SwiperSlide>
+                </Swiper>
             </div>
            
 

@@ -7,12 +7,12 @@ import { useState } from 'react';
 import { Transaction } from '../../model/transaction.mjs';
 
 
-export function Modal({openModal, setOpenModal, transactionList}){
+export function Modal({openModal, setOpenModal, transactionListState, setTansactionList}){
     //const [openModal, setOpenModal] = useState(true);
     const [paintGreenBtn, setPaintGreenBtn] = useState(false);
     const [paintRedBtn, setPaintRedBtn] = useState(false);
     const [title, setTitle] = useState('');
-    const [amount, setAmount] = useState('');
+    const [amount, setAmount] = useState(0);
     const [category, setCategory] = useState(''); 
     const [isIncome, setIsIncome] = useState(true);// true: income, false: outcome 
 
@@ -34,10 +34,12 @@ export function Modal({openModal, setOpenModal, transactionList}){
 
     async function handleCreateNewTransaction(event){
         event.preventDefault();
-        console.log("testando1: ",transactionList);
+        console.log("testando1: ",transactionListState);
+        console.log("amount:"+amount);
         let newTransaction = new Transaction(title, amount,isIncome, category, null );
-        transactionList.addTransaction(newTransaction);
-        console.log("testando2: ",transactionList);
+        transactionListState.addTransaction(newTransaction);
+        setTansactionList(transactionListState)
+        console.log("testando2: ",transactionListState);
         handleCloseModal();
     }
 
@@ -68,7 +70,7 @@ export function Modal({openModal, setOpenModal, transactionList}){
                         ></input>
                         <input 
                             placeholder='Preço'
-                            onChange={amount => setAmount(amount.target.value)}
+                            onChange={amount => setAmount(Number(amount.target.value))}
                         ></input>
                         <div className='transactionTypeContainer'>
                             <button 

@@ -9,8 +9,8 @@ import { TransactionList } from './model/transaction-list.mjs'
 import { useEffect } from 'react'
 import { Transaction } from './model/transaction.mjs'
 
-import { Transaction } from './model/transaction.mjs'
-import { TransactionList } from './model/transaction-list.mjs'
+
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -33,9 +33,7 @@ function App() {
     e não simplesmente uma variável let ou const
   */
   
-  useEffect(()=>{
-    console.log('transactionApp:', transactionList);
-  },[openModal])
+  
 
   const transactionList = new TransactionList([]);
   transactionList.addTransaction(new Transaction("Google", 1000, true, "Salário", new Date()));
@@ -44,14 +42,19 @@ function App() {
 
   const [transactionListState, setTansactionList] = useState(transactionList);
   const [orderObject, setOrderObject] = useState({attribute: "default", order: true});
-
+  
+  useEffect(()=>{
+    console.log('transactionList:', transactionList);
+    console.log('transactionListState:', transactionListState);
+  },[openModal])
 
   return(
     <>
       
       <body>
-        <Header setOpenModal={setOpenModal} transactionList={transactionList}/>
-        <Modal  openModal={openModal} setOpenModal={setOpenModal} transactionList={transactionList}/>
+        <Header setOpenModal={setOpenModal} transactionListState={transactionListState} setTansactionList={setTansactionList}/>
+        <Modal  openModal={openModal} setOpenModal={setOpenModal} transactionListState={transactionListState} setTansactionList={setTansactionList}/>
+        
       </body>
     </>
     

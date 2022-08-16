@@ -2,7 +2,7 @@ import { Summary } from '../Summary'
 import './header.css'
 import totalImage from '../../assets/total.svg'
 
-export function Header({setOpenModal, transactionList}){
+export function Header({setOpenModal, transactionListState}){
     return(
         <>
             <header className='headerPrincipal'>
@@ -21,7 +21,7 @@ export function Header({setOpenModal, transactionList}){
                         </div>
                     </div>
                     <div className='headerBottom'>
-                        <Summary transactionList={transactionList}/>
+                        <Summary transactionListState={transactionListState}/>
                     </div>
                 </div>
             </header>
