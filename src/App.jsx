@@ -9,6 +9,9 @@ import { TransactionList } from './model/transaction-list.mjs'
 import { useEffect } from 'react'
 import { Transaction } from './model/transaction.mjs'
 
+import { Transaction } from './model/transaction.mjs'
+import { TransactionList } from './model/transaction-list.mjs'
+
 function App() {
   const [count, setCount] = useState(0);
   const [openModal, setOpenModal] = useState(false);
@@ -20,7 +23,7 @@ function App() {
     date: {size: "2", name: "Data"}
   };
 
-  const transactionList = new TransactionList([new Transaction('a',1100,true,'aa', null), new Transaction('b', 500, false, 'bb', null)]);
+  //const transactionList = new TransactionList([new Transaction('a',1100,true,'aa', null), new Transaction('b', 500, false, 'bb', null)]);
   
   console.log('afterTransactionList')
   /* o console.log acima está sendo impresso quando eu termino de cadastrar 
@@ -34,6 +37,15 @@ function App() {
     console.log('transactionApp:', transactionList);
   },[openModal])
 
+  const transactionList = new TransactionList([]);
+  transactionList.addTransaction(new Transaction("Google", 1000, true, "Salário", new Date()));
+  transactionList.addTransaction(new Transaction("Conta de Luz", 100, false, "Conta", new Date()));
+  transactionList.addTransaction(new Transaction("Conta de Internet", 200, false, "Conta", new Date()));
+
+  const [transactionListState, setTansactionList] = useState(transactionList);
+  const [orderObject, setOrderObject] = useState({attribute: "default", order: true});
+
+
   return(
     <>
       
@@ -45,9 +57,13 @@ function App() {
     
   );
   
-
+ 
   return (
-    <div className="container">{TransactionTable(attributes)}</div>
+    <div className="container">
+      <TransactionTable attributes={attributes} 
+      transactionList={transactionListState} transactionListSetter={setTansactionList}
+      orderObject={orderObject} orderObjectSetter={setOrderObject}></TransactionTable>
+    </div>
   )
 }
 
