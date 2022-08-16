@@ -9,8 +9,6 @@ import { Transaction } from './model/transaction.mjs'
 import { TransactionList } from './model/transaction-list.mjs'
 
 function App() {
-  const [count, setCount] = useState(0);
-
   const attributes = {
     name: {size: "6", name: "Titulo"},
     price: {size: "2", name: "Preço"},
