@@ -7,6 +7,7 @@ import './summary.css';
 
 import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
+import { useState } from 'react';
 
 
 
@@ -15,21 +16,40 @@ import 'swiper/css';
 //<TotalCard total={16141}/>
 
 export function Summary(props){
+    const [swiperSizeMobile, setSwiperSizeMobile] = useState(false);
     
+    window.addEventListener('resize', function(event){
+        if(window.innerWidth <= 767){
+            if(!swiperSizeMobile){
+                setSwiperSizeMobile(true);
+            }
+        }else{
+            if(swiperSizeMobile){
+                setSwiperSizeMobile(false);
+            }
+        }
+    })
+
     return(
         <>  
-            <div className='summary'>
-                <Swiper>
+            <div 
+                className='summary' 
+                /*style={{width: swiperSizeMobile?'95%':'100%'}}*/
+                >
+                <Swiper
+                    slidesPerView={swiperSizeMobile?1:3}
+                    spaceBetween={swiperSizeMobile?'-5%':25}
+                >
                     <SwiperSlide>
-                        <IncomeCard total={props.transactionListState.getTotalIncome()}/>
+                        <IncomeCard total={props.transactionListState.getTotalIncome()} transactionListState={props.transactionListState}/>
                     </SwiperSlide>
                     
-                    <SwiperSlide>
-                        <OutcomeCard total={props.transactionListState.getTotalOutcome()}/>
+                    <SwiperSlide style={{marginLeft: ''}}>
+                        <OutcomeCard total={props.transactionListState.getTotalOutcome()} transactionListState={props.transactionListState}/>
                     </SwiperSlide>
                     
-                    <SwiperSlide>
-                        <TotalCard total={props.transactionListState.getTotalIncome() - props.transactionListState.getTotalOutcome()}/>
+                    <SwiperSlide style={{marginLeft: ''}}>
+                        <TotalCard total={props.transactionListState.getTotalIncome() - props.transactionListState.getTotalOutcome()} transactionListState={props.transactionListState}/>
                     </SwiperSlide>
                 </Swiper>
             </div>

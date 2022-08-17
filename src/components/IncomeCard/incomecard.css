@@ -5,15 +5,17 @@
     border-radius: 5px ;
     background-color: rgb(255, 255, 255);
     padding: 10px 20px 20px 20px;
-    width: 31.5%;
+    height: auto;
+    /*width: 31.5%;*/
 }
+
 .incomecard .top{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 .incomecard .top .title{
-    font-size: 15px;
+    font-size: 16px;
     
     margin-top: 10px;
 
@@ -22,8 +24,48 @@
     width: 27px;
 }
 
-.bottom{
+.bottom .bottom-text{
     display: flex;
     justify-content: left;
     font-size: 30px;
+}
+
+.incomecard .bottom p{
+    display: none;    
+}
+
+
+@media(max-width: 767px){
+    .incomecard{
+        width: 92%;
+        height: 200px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .incomecard .top .title{
+        font-size: 15px;
+    }
+
+    .incomecard .top .income_icon{
+        width: 45px;
+    }
+
+    .incomecard .bottom .bottom-text{
+        display: flex;
+        justify-content: left;
+        font-size: 35px;
+        font-weight: normal;
+        
+    }
+    .incomecard .bottom{
+        display: flex;
+        flex-direction: column;
+    }
+    .incomecard .bottom p{
+        display: flex;
+        font-size: 15px;
+        color: gray;
+        
+    }
 }

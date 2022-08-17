@@ -54,20 +54,24 @@ function App() {
       <body>
         <Header setOpenModal={setOpenModal} transactionListState={transactionListState} setTansactionList={setTansactionList}/>
         <Modal  openModal={openModal} setOpenModal={setOpenModal} transactionListState={transactionListState} setTansactionList={setTansactionList}/>
-        
+        <div className="container">
+          <TransactionTable attributes={attributes} 
+          transactionList={transactionListState} transactionListSetter={setTansactionList}
+          orderObject={orderObject} orderObjectSetter={setOrderObject}></TransactionTable>
+        </div>
       </body>
     </>
     
   );
   
  
-  return (
+  /*return (
     <div className="container">
-      <TransactionTable attributes={attributes} 
-      transactionList={transactionListState} transactionListSetter={setTansactionList}
-      orderObject={orderObject} orderObjectSetter={setOrderObject}></TransactionTable>
-    </div>
-  )
+          <TransactionTable attributes={attributes} 
+          transactionList={transactionListState} transactionListSetter={setTansactionList}
+          orderObject={orderObject} orderObjectSetter={setOrderObject}></TransactionTable>
+        </div>
+  )*/
 }
 
 export default App

@@ -10,12 +10,17 @@ export function TotalCard(props){
                     <p className='title'>Total</p>
                     <img className='total_icon' src={totalImage} alt="Total"/>
                 </header>
-                <strong className='bottom'>
+                <div className='bottom'>
+                <strong className='bottom-text'>
                 {new Intl.NumberFormat('pt-BR', {
                     style: 'currency',
                     currency: 'BRL'
                 }).format(props.total)}
                 </strong>
+                <p>
+                    Última entrada dia 10 de dezembro
+                </p>
+                </div>
             </div>
         </>
     );
