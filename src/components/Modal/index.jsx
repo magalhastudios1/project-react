@@ -34,12 +34,12 @@ export function Modal({openModal, setOpenModal, transactionListState, setTansact
 
     async function handleCreateNewTransaction(event){
         event.preventDefault();
-        console.log("testando1: ",transactionListState);
-        console.log("amount:"+amount);
+        //console.log("testando1: ",transactionListState);
+        //console.log("amount:"+amount);
         let newTransaction = new Transaction(title, amount,isIncome, category, new Date());
         transactionListState.addTransaction(newTransaction);
         setTansactionList(transactionListState)
-        console.log("testando2: ",transactionListState);
+        //console.log("testando2: ",transactionListState);
         handleCloseModal();
     }
 

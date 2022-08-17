@@ -18,6 +18,15 @@ import { useState } from 'react';
 export function Summary(props){
     const [swiperSizeMobile, setSwiperSizeMobile] = useState(false);
     
+    if(window.innerWidth <= 767){
+        if(!swiperSizeMobile){
+            setSwiperSizeMobile(true);
+        }
+    }else{
+        if(swiperSizeMobile){
+            setSwiperSizeMobile(false);
+        }
+    }
     window.addEventListener('resize', function(event){
         if(window.innerWidth <= 767){
             if(!swiperSizeMobile){
@@ -44,11 +53,11 @@ export function Summary(props){
                         <IncomeCard total={props.transactionListState.getTotalIncome()} transactionListState={props.transactionListState}/>
                     </SwiperSlide>
                     
-                    <SwiperSlide style={{marginLeft: ''}}>
+                    <SwiperSlide>
                         <OutcomeCard total={props.transactionListState.getTotalOutcome()} transactionListState={props.transactionListState}/>
                     </SwiperSlide>
                     
-                    <SwiperSlide style={{marginLeft: ''}}>
+                    <SwiperSlide>
                         <TotalCard total={props.transactionListState.getTotalIncome() - props.transactionListState.getTotalOutcome()} transactionListState={props.transactionListState}/>
                     </SwiperSlide>
                 </Swiper>

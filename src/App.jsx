@@ -43,6 +43,7 @@ function App() {
   const [transactionListState, setTansactionList] = useState(transactionList);
   const [orderObject, setOrderObject] = useState({attribute: "default", order: true});
   
+  console.log('transactionListState inicial:', transactionListState);
   useEffect(()=>{
     console.log('transactionList:', transactionList);
     console.log('transactionListState:', transactionListState);
