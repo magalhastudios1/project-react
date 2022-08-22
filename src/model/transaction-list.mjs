@@ -18,6 +18,16 @@ class TransactionList{
         this.#transactions.push(transaction);
     }
 
+    sort(tableOrder){
+        const attribute = tableOrder.getAttribute();
+        if(attribute == "default"){
+            return this.getTransactions();
+        }
+
+        const inverse = tableOrder.getOrder();
+        return this.orderBy(attribute, inverse);
+    }
+
     orderBy(attribute, inverse){
         const sortFunction = (a, b) => {
             const order = a.getAttribute(attribute) < b.getAttribute(attribute);
@@ -66,26 +76,14 @@ class TransactionList{
 
     getLastIncome(){
         const incomes = this.getIncomes();
-        return incomes.reduce((aDate, b)=> {
-            const bDate = b.getDate();
-            if(aDate < bDate){
-                return bDate;
-            }else{
-                return aDate;
-            }
-        })
+        const dates = incomes.map((el)=>el.getDate());
+        return new Date(Math.max.apply(null, dates));
     }
 
     getLastOutcome(){
         const outcomes = this.getOutcomes();
-        return outcomes.reduce((aDate, b)=> {
-            const bDate = b.getDate();
-            if(aDate < bDate){
-                return bDate;
-            }else{
-                return aDate;
-            }
-        })
+        const dates = outcomes.map((el)=>el.getDate());
+        return new Date(Math.max.apply(null, dates));
     }
 }
 

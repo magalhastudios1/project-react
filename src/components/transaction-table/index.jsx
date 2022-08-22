@@ -1,13 +1,13 @@
-import { TransactionTableBody } from "../transaction-table-body";
+import { TransactionTableTitle } from "../transaction-table-title";
 import { TransactionTableHeader } from "../transaction-table-header";
+import { TransactionTableBody } from "../transaction-table-body";
 
-function TransactionTable({attributes, transactionList, transactionListSetter, orderObject, orderObjectSetter}){
+function TransactionTable({tableState, tableStateSetter}){
     return (
         <div>
-            <TransactionTableHeader attributes={attributes} 
-            transactionList={transactionList} transactionListSetter={transactionListSetter}
-            orderObject={orderObject} orderObjectSetter={orderObjectSetter}></TransactionTableHeader>
-            <TransactionTableBody transactionList={transactionList} transactionListSetter={transactionListSetter}></TransactionTableBody>
+            <TransactionTableTitle tableState={tableState}></TransactionTableTitle>
+            <TransactionTableHeader tableState={tableState} tableStateSetter={tableStateSetter}></TransactionTableHeader>
+            <TransactionTableBody tableState={tableState}></TransactionTableBody>
         </div> 
     );
 }

@@ -7,14 +7,14 @@ import { useState } from 'react';
 import { Transaction } from '../../model/transaction.mjs';
 
 
-export function Modal({openModal, setOpenModal, transactionListState, setTansactionList}){
-    //const [openModal, setOpenModal] = useState(true);
+export function Modal({openModal, setOpenModal, tableState, tableStateSetter}){
+    
     const [paintGreenBtn, setPaintGreenBtn] = useState(false);
     const [paintRedBtn, setPaintRedBtn] = useState(false);
     const [title, setTitle] = useState('');
     const [amount, setAmount] = useState(0);
     const [category, setCategory] = useState(''); 
-    const [isIncome, setIsIncome] = useState(true);// true: income, false: outcome 
+    const [isIncome, setIsIncome] = useState(true);
 
     function handleCloseModal(){
         setOpenModal(false);
@@ -34,12 +34,10 @@ export function Modal({openModal, setOpenModal, transactionListState, setTansact
 
     async function handleCreateNewTransaction(event){
         event.preventDefault();
-        //console.log("testando1: ",transactionListState);
-        //console.log("amount:"+amount);
-        let newTransaction = new Transaction(title, amount,isIncome, category, new Date());
-        transactionListState.addTransaction(newTransaction);
-        setTansactionList(transactionListState)
-        //console.log("testando2: ",transactionListState);
+        const transactionList = tableState.getTransactionList();
+        const newTransaction = new Transaction(title, amount,isIncome, category, new Date());
+        transactionList.addTransaction(newTransaction);
+        tableStateSetter(tableState.getCopy());
         handleCloseModal();
     }
 

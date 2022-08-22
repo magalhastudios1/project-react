@@ -1,15 +1,15 @@
 import {TransactionTableBodyRow} from "../transaction-table-body-row";
 
-function TransactionTableBody({transactionList}){
-    const transactions = transactionList.getTransactions();
+function TransactionTableBody({tableState}){
+    const transactionList = tableState.getTransactionList();
+    const tableOrder = tableState.getTableOrder();
+    const transactions = transactionList.sort(tableOrder);
     let result = [];
     for(let i = 0; i < transactions.length; i++){
         const transaction = transactions[i];
         result.push(<TransactionTableBodyRow key={i} transaction={transaction}></TransactionTableBodyRow>)
     }
-    return (
-        <div>{result}</div>
-    )
+    return (<div>{result}</div>);
 }
 
 export {TransactionTableBody};

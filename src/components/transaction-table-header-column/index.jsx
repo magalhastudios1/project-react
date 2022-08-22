@@ -1,39 +1,35 @@
-import { TransactionList } from "../../model/transaction-list.mjs";
+import { TableOrder } from "../../model/table-order.mjs";
+import { TransactionTableHeaderColumnOrderIcon } from "../transaction-table-header-column-order-icon";
 
-function TransactionTableHeaderColumn({item, attribute, transactionList, transactionListSetter, orderObject, orderObjectSetter}){
+function TransactionTableHeaderColumn({item, attribute, tableState, tableStateSetter}){
     function updateTransactionTableOrder(event){
         const target = event.target;
         const attribute = target.getAttribute("attribute")
 
-        if(attribute == orderObject.attribute){
-            var order = orderObject.order;
+        const tableOrder = tableState.getTableOrder();
+        const currentAttribute = tableOrder.getAttribute();
+
+        if(attribute == currentAttribute){
+            var order = tableOrder.getOrder();
         }else{
             var order = true;
         }
 
-        const transactions = transactionList.orderBy(attribute, order);
-        
-        transactionListSetter(new TransactionList(transactions));
-        orderObjectSetter({attribute, order: !order});
-    }
-
-    function TransactionTableHeaderColumnOrderIcon({attribute}){
-        if(attribute != orderObject.attribute){
-            return (<span></span>);
-        }
-
-        if(!orderObject.order){
-            return (<span className="ms-2"><i className="fa-solid fa-caret-down"></i></span>);
-        }else{
-            return (<span className="ms-2"><i className="fa-solid fa-caret-up"></i></span>);
-        }
+        const newTableState = tableState.setTableOrder(new TableOrder(attribute, !order));
+        tableStateSetter(newTableState.getCopy());
     }
 
     const {size, name} = item;
+    const tableOrder = tableState.getTableOrder();
+
+    const currentAttribute = tableOrder.getAttribute();
+    const currentOrder = tableOrder.getOrder();
+
     return (
         <div className={"col-" + size} attribute={attribute} onClick={updateTransactionTableOrder}>
             {name}
-            <TransactionTableHeaderColumnOrderIcon attribute={attribute}></TransactionTableHeaderColumnOrderIcon>
+            <TransactionTableHeaderColumnOrderIcon attribute={attribute} currentAttribute={currentAttribute} currentOrder={currentOrder}>
+            </TransactionTableHeaderColumnOrderIcon>
         </div>
     );
 }
